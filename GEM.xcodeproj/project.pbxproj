@@ -7,21 +7,38 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1542138958A8DA65A96B6D8C /* Pods_GEM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2A58B5E32904139805BE78 /* Pods_GEM.framework */; };
+		9A3431B21F82B08700C79A62 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A3431B11F82B08100C79A62 /* GoogleService-Info.plist */; };
+		9A3431B51F83CE3400C79A62 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3431B41F83CE3400C79A62 /* CameraViewController.swift */; };
+		9A3431B61F83CE3E00C79A62 /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A3431B31F83CE3300C79A62 /* Camera.storyboard */; };
+		9A3431B81F83D92100C79A62 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3431B71F83D92100C79A62 /* SignInViewController.swift */; };
+		9A3431BA1F83D93400C79A62 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3431B91F83D93400C79A62 /* SignUpViewController.swift */; };
+		9A3431BC1F8510E500C79A62 /* SignedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3431BB1F8510E500C79A62 /* SignedViewController.swift */; };
+		9A3431BF1F85165200C79A62 /* HashPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3431BE1F85165200C79A62 /* HashPassword.swift */; };
 		9AAC0FE81F8283E20082FD56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAC0FE71F8283E20082FD56 /* AppDelegate.swift */; };
-		9AAC0FEA1F8283E20082FD56 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAC0FE91F8283E20082FD56 /* ViewController.swift */; };
 		9AAC0FED1F8283E20082FD56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AAC0FEB1F8283E20082FD56 /* Main.storyboard */; };
 		9AAC0FEF1F8283E20082FD56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9AAC0FEE1F8283E20082FD56 /* Assets.xcassets */; };
 		9AAC0FF21F8283E20082FD56 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AAC0FF01F8283E20082FD56 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		69902067F2ADBFEF2BB12940 /* Pods-GEM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GEM.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GEM/Pods-GEM.debug.xcconfig"; sourceTree = "<group>"; };
+		6EE0DE03E3935D83D781AA0C /* Pods-GEM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GEM.release.xcconfig"; path = "Pods/Target Support Files/Pods-GEM/Pods-GEM.release.xcconfig"; sourceTree = "<group>"; };
+		9A3431B11F82B08100C79A62 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9A3431B31F83CE3300C79A62 /* Camera.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
+		9A3431B41F83CE3400C79A62 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		9A3431B71F83D92100C79A62 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		9A3431B91F83D93400C79A62 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		9A3431BB1F8510E500C79A62 /* SignedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignedViewController.swift; sourceTree = "<group>"; };
+		9A3431BD1F8514A600C79A62 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		9A3431BE1F85165200C79A62 /* HashPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashPassword.swift; sourceTree = "<group>"; };
 		9AAC0FE41F8283E20082FD56 /* GEM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GEM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AAC0FE71F8283E20082FD56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9AAC0FE91F8283E20082FD56 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9AAC0FEC1F8283E20082FD56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9AAC0FEE1F8283E20082FD56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9AAC0FF11F8283E20082FD56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9AAC0FF31F8283E20082FD56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC2A58B5E32904139805BE78 /* Pods_GEM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GEM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +46,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1542138958A8DA65A96B6D8C /* Pods_GEM.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		20A7AE071CCEBD1260E0F92D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FC2A58B5E32904139805BE78 /* Pods_GEM.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3C9BB6C22F12ADC71D53CD29 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				69902067F2ADBFEF2BB12940 /* Pods-GEM.debug.xcconfig */,
+				6EE0DE03E3935D83D781AA0C /* Pods-GEM.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		9AAC0FDB1F8283E20082FD56 = {
 			isa = PBXGroup;
 			children = (
 				9AAC0FE61F8283E20082FD56 /* GEM */,
 				9AAC0FE51F8283E20082FD56 /* Products */,
+				3C9BB6C22F12ADC71D53CD29 /* Pods */,
+				20A7AE071CCEBD1260E0F92D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,11 +92,18 @@
 			isa = PBXGroup;
 			children = (
 				9AAC0FE71F8283E20082FD56 /* AppDelegate.swift */,
-				9AAC0FE91F8283E20082FD56 /* ViewController.swift */,
+				9A3431B41F83CE3400C79A62 /* CameraViewController.swift */,
+				9A3431B71F83D92100C79A62 /* SignInViewController.swift */,
+				9A3431BE1F85165200C79A62 /* HashPassword.swift */,
+				9A3431B91F83D93400C79A62 /* SignUpViewController.swift */,
+				9A3431BB1F8510E500C79A62 /* SignedViewController.swift */,
+				9A3431BD1F8514A600C79A62 /* BridgingHeader.h */,
 				9AAC0FEB1F8283E20082FD56 /* Main.storyboard */,
 				9AAC0FEE1F8283E20082FD56 /* Assets.xcassets */,
 				9AAC0FF01F8283E20082FD56 /* LaunchScreen.storyboard */,
+				9A3431B31F83CE3300C79A62 /* Camera.storyboard */,
 				9AAC0FF31F8283E20082FD56 /* Info.plist */,
+				9A3431B11F82B08100C79A62 /* GoogleService-Info.plist */,
 			);
 			path = GEM;
 			sourceTree = "<group>";
@@ -71,9 +115,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9AAC0FF61F8283E20082FD56 /* Build configuration list for PBXNativeTarget "GEM" */;
 			buildPhases = (
+				1A6CF44C4A8BEA9EC9C48F73 /* [CP] Check Pods Manifest.lock */,
 				9AAC0FE01F8283E20082FD56 /* Sources */,
 				9AAC0FE11F8283E20082FD56 /* Frameworks */,
 				9AAC0FE21F8283E20082FD56 /* Resources */,
+				3FEEF7DA8498C5803AFDD09F /* [CP] Embed Pods Frameworks */,
+				35401FBC0D3056E7C92A3F71 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -124,20 +171,88 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AAC0FF21F8283E20082FD56 /* LaunchScreen.storyboard in Resources */,
+				9A3431B21F82B08700C79A62 /* GoogleService-Info.plist in Resources */,
 				9AAC0FEF1F8283E20082FD56 /* Assets.xcassets in Resources */,
 				9AAC0FED1F8283E20082FD56 /* Main.storyboard in Resources */,
+				9A3431B61F83CE3E00C79A62 /* Camera.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1A6CF44C4A8BEA9EC9C48F73 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GEM-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		35401FBC0D3056E7C92A3F71 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GEM/Pods-GEM-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3FEEF7DA8498C5803AFDD09F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-GEM/Pods-GEM-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/ProjectOxfordFace/ProjectOxfordFace.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProjectOxfordFace.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GEM/Pods-GEM-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9AAC0FE01F8283E20082FD56 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AAC0FEA1F8283E20082FD56 /* ViewController.swift in Sources */,
 				9AAC0FE81F8283E20082FD56 /* AppDelegate.swift in Sources */,
+				9A3431B51F83CE3400C79A62 /* CameraViewController.swift in Sources */,
+				9A3431BC1F8510E500C79A62 /* SignedViewController.swift in Sources */,
+				9A3431BA1F83D93400C79A62 /* SignUpViewController.swift in Sources */,
+				9A3431BF1F85165200C79A62 /* HashPassword.swift in Sources */,
+				9A3431B81F83D92100C79A62 /* SignInViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +331,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = GEM/BridgingHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -265,6 +381,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = GEM/BridgingHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -272,6 +389,7 @@
 		};
 		9AAC0FF71F8283E20082FD56 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 69902067F2ADBFEF2BB12940 /* Pods-GEM.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -281,12 +399,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.emreozdil.GEM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		9AAC0FF81F8283E20082FD56 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EE0DE03E3935D83D781AA0C /* Pods-GEM.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -296,7 +415,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.emreozdil.GEM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
