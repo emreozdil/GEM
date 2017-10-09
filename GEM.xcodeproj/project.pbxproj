@@ -66,6 +66,35 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9A4A4A241F8BC9E200862367 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9A3431B41F83CE3400C79A62 /* CameraViewController.swift */,
+				9A66744B1F876BD700A04F9E /* LoginRegisterViewController.swift */,
+				9A66744D1F876C6200A04F9E /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9A4A4A251F8BC9F700862367 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9AA773E01F87CD9B0049DC3F /* Camera.storyboard */,
+				9AAC0FEE1F8283E20082FD56 /* Assets.xcassets */,
+				9AAC0FF01F8283E20082FD56 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9A4A4A261F8BC9FF00862367 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9A3431BE1F85165200C79A62 /* HashPassword.swift */,
+				9A3431BD1F8514A600C79A62 /* BridgingHeader.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		9AAC0FDB1F8283E20082FD56 = {
 			isa = PBXGroup;
 			children = (
@@ -88,14 +117,9 @@
 			isa = PBXGroup;
 			children = (
 				9AAC0FE71F8283E20082FD56 /* AppDelegate.swift */,
-				9A3431B41F83CE3400C79A62 /* CameraViewController.swift */,
-				9A66744B1F876BD700A04F9E /* LoginRegisterViewController.swift */,
-				9A66744D1F876C6200A04F9E /* ViewController.swift */,
-				9A3431BE1F85165200C79A62 /* HashPassword.swift */,
-				9A3431BD1F8514A600C79A62 /* BridgingHeader.h */,
-				9AA773E01F87CD9B0049DC3F /* Camera.storyboard */,
-				9AAC0FEE1F8283E20082FD56 /* Assets.xcassets */,
-				9AAC0FF01F8283E20082FD56 /* LaunchScreen.storyboard */,
+				9A4A4A261F8BC9FF00862367 /* Model */,
+				9A4A4A251F8BC9F700862367 /* View */,
+				9A4A4A241F8BC9E200862367 /* Controller */,
 				9AAC0FF31F8283E20082FD56 /* Info.plist */,
 				9A3431B11F82B08100C79A62 /* GoogleService-Info.plist */,
 			);
