@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zDL-0b-6dL">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -11,45 +11,45 @@
         <!--Camera View Controller-->
         <scene sceneID="WRZ-gs-xfZ">
             <objects>
-                <viewController id="zDL-0b-6dL" customClass="CameraViewController" customModule="GEM" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zDL-0b-6dL" customClass="CameraViewController" customModule="GEM" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="itF-vi-L3A"/>
                         <viewControllerLayoutGuide type="bottom" id="yc9-mK-l2B"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Uwh-xa-GEb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XmK-AG-do7">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fht-HK-Y80">
-                                        <rect key="frame" x="137" y="610" width="100" height="49"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fht-HK-Y80">
+                                        <rect key="frame" x="156.66666666666669" y="674" width="100.00000000000006" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="49" id="fRh-or-RNq"/>
-                                            <constraint firstAttribute="width" constant="100" id="zsa-Xa-0gD"/>
+                                            <constraint firstAttribute="width" constant="100" id="TBA-7Z-cBB"/>
+                                            <constraint firstAttribute="height" constant="50" id="nuN-6X-woL"/>
                                         </constraints>
-                                        <state key="normal" title="Take Picture">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
+                                        <state key="normal" title="Take Picture"/>
                                         <connections>
-                                            <action selector="takePhoto:" destination="zDL-0b-6dL" eventType="touchUpInside" id="E3b-0G-Bfe"/>
+                                            <action selector="takePhoto" destination="zDL-0b-6dL" eventType="touchUpInside" id="WMe-mS-oML"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="Fht-HK-Y80" firstAttribute="centerX" secondItem="XmK-AG-do7" secondAttribute="centerX" id="EdH-xi-Kvy"/>
-                                    <constraint firstAttribute="bottom" secondItem="Fht-HK-Y80" secondAttribute="bottom" constant="8" id="m2H-32-dvX"/>
+                                    <constraint firstItem="Fht-HK-Y80" firstAttribute="centerX" secondItem="XmK-AG-do7" secondAttribute="centerX" id="OG1-zG-DtW"/>
+                                    <constraint firstAttribute="bottom" secondItem="Fht-HK-Y80" secondAttribute="bottom" constant="12" id="Vi2-aA-uJh"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="XmK-AG-do7" firstAttribute="top" secondItem="Uwh-xa-GEb" secondAttribute="top" id="BB8-Oi-Qc1"/>
-                            <constraint firstAttribute="trailing" secondItem="XmK-AG-do7" secondAttribute="trailing" id="KS0-MC-Lyp"/>
-                            <constraint firstItem="XmK-AG-do7" firstAttribute="leading" secondItem="Uwh-xa-GEb" secondAttribute="leading" id="fv7-VJ-qHs"/>
-                            <constraint firstItem="yc9-mK-l2B" firstAttribute="top" secondItem="XmK-AG-do7" secondAttribute="bottom" id="pKw-cO-oUR"/>
+                            <constraint firstItem="XmK-AG-do7" firstAttribute="top" secondItem="Uwh-xa-GEb" secondAttribute="top" id="3Sq-Te-1wU"/>
+                            <constraint firstAttribute="trailing" secondItem="XmK-AG-do7" secondAttribute="trailing" id="GdV-Nd-GbG"/>
+                            <constraint firstItem="XmK-AG-do7" firstAttribute="centerX" secondItem="Uwh-xa-GEb" secondAttribute="centerX" id="LZZ-MA-ooe"/>
+                            <constraint firstItem="yc9-mK-l2B" firstAttribute="top" secondItem="XmK-AG-do7" secondAttribute="bottom" id="ZEg-xt-i3h"/>
+                            <constraint firstItem="XmK-AG-do7" firstAttribute="centerY" secondItem="Uwh-xa-GEb" secondAttribute="centerY" id="rPg-V9-QTq"/>
+                            <constraint firstItem="XmK-AG-do7" firstAttribute="leading" secondItem="Uwh-xa-GEb" secondAttribute="leading" id="tDT-kE-2QZ"/>
                         </constraints>
                     </view>
                     <connections>

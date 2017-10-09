@@ -14,8 +14,8 @@ import FirebaseStorage
 import ProjectOxfordFace
 
 enum PhotoType {
-    case signin
-    case signup
+    case login
+    case register
 }
 
 class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
@@ -37,19 +37,50 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     var faceFromPhoto: MPOFace!
     var faceFromFirebase: MPOFace!
     
+//    let cameraView: UIView = {
+//        let view = UIView()
+//        view.backgroundColor = UIColor.lightGray
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        return view
+//    }()
+    
+//    let takePictureButton: UIButton = {
+//        let button = UIButton(type: .custom)
+//        button.setTitle("Take Picture", for: .normal)
+//        button.setTitleColor(UIColor.white, for: .normal)
+//        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.addTarget(self, action: #selector(takePhoto), for: .touchUpInside)
+//        return button
+//    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        view.addSubview(cameraView)
+//        setUpCameraView()
         
         let storage = Storage.storage()
-        
         let storageRef = storage.reference(forURL: "gs://gem-ios-3a8e7.appspot.com/")
-        
         usersStorageRef = storageRef.child("users")
-        
         
     }
     
+    func setUpCameraView() {
+        // MARK: X, Y, Width, Height
+        cameraView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        cameraView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        cameraView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        cameraView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
+    }
+    
+//    func setUpTakePictureButton() {
+//        // MARK: X, Y, Width, Height
+//        takePictureButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+//        takePictureButton.bottomAnchor.constraint(equalTo: cameraView.bottomAnchor, constant: -12).isActive = true
+//        takePictureButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+//        takePictureButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -76,6 +107,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                             
                             cameraView.layer.addSublayer(previewLayer)
                             cameraView.addSubview(button)
+//                            setUpTakePictureButton()
                             
                             previewLayer.position = CGPoint (x: self.cameraView.frame.width / 2, y: self.cameraView.frame.height / 2)
                             previewLayer.bounds = cameraView.frame
@@ -111,7 +143,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
             
             
             showActivityIndicator(onView: self.view)
-            if photoType == PhotoType.signup{
+            if photoType == PhotoType.register{
                 
                 self.personImage = UIImage(data: dataImage)
                 
@@ -148,10 +180,10 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                 captureSession.stopRunning()
                 previewLayer.removeFromSuperlayer()
                 
-                let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Signed")
+                let viewController = ViewController()
                 self.present(viewController, animated: true, completion:  nil)
                 actIdc.stopAnimating()
-            }else if photoType == PhotoType.signin {
+            }else if photoType == PhotoType.login {
                 
                 self.personImage = UIImage(data: dataImage)
                 
@@ -220,8 +252,9 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                     self.actIdc.stopAnimating()
                     if result!.isIdentical {
                         // THE PERSON IS THE SAME
-                        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Signed")
+                        let viewController = ViewController()
                         self.present(viewController, animated: true, completion: nil)
+                        
                     }else {
                         self.failLogin()
                     }
@@ -266,8 +299,9 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         // THE PERSON IS NOT THE SAME
         let alert = UIAlertController(title: "Failed Login", message: "Not same person", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
-            let signOutViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TabBar")
-            self.present(signOutViewController, animated: true, completion: nil)
+//            let viewController = LoginRegisterViewController()
+//            self.present(viewController, animated: true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         })
         
         alert.addAction(action)
@@ -278,9 +312,13 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         self.present(alert, animated: true, completion: nil)
         
     }
-    @IBAction func takePhoto(_ sender: Any) {
+//    @objc func takePhoto() {
+//        let settings = AVCapturePhotoSettings()
+//        self.sessionOutput.capturePhoto(with: settings, delegate: self)
+//    }
+
+    @IBAction func takePhoto() {
         let settings = AVCapturePhotoSettings()
         self.sessionOutput.capturePhoto(with: settings, delegate: self)
     }
-    
 }
