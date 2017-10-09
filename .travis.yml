@@ -1,13 +1,6 @@
 {
-  "language": "objective-c",
+  "language": "swift",
   "osx_image": "xcode9",
-  "env": "SCHEME=\"GEM\"      DESTINATION=\"platform=iOS Simulator,name=iPhone 6S\"              RUN_TESTS=\"YES\"   SEND_TO_COVERALLS=\"YES\"",
-  "script": [
-    "if [ $RUN_TESTS == \"YES\" ]; then travis_retry xcodebuild -workspace \"GEM.xcworkspace\" -scheme \"$SCHEME\" -destination \"$DESTINATION\"; else travis_retry xcodebuild -workspace \"GEM.xcworkspace\" -scheme \"$SCHEME\" -destination \"$DESTINATION\" build; fi"
-  ],
-  "after_success": [
-    "if [ $SEND_TO_COVERALLS == \"YES\" ]; then echo \"Send to coveralls\" slather fi"
-  ],
-  "global_env": "LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8",
+  "xcode_project": "GEM.xcworkspace",
   "os": "osx"
 }
