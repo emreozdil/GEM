@@ -1,5 +1,5 @@
 {
-  "language": "swift",
+  "language": "objective-c",
   "osx_image": "xcode9",
   "env": "SCHEME=\"GEM\"      DESTINATION=\"platform=iOS Simulator,name=iPhone 6S\"              RUN_TESTS=\"YES\"   SEND_TO_COVERALLS=\"YES\"",
   "script": [
