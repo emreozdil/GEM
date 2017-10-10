@@ -11,7 +11,7 @@
         <!--Camera View Controller-->
         <scene sceneID="WRZ-gs-xfZ">
             <objects>
-                <viewController id="zDL-0b-6dL" customClass="CameraViewController" customModule="GEM" sceneMemberID="viewController">
+                <viewController id="zDL-0b-6dL" customClass="CameraViewController" customModule="GEM" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="itF-vi-L3A"/>
                         <viewControllerLayoutGuide type="bottom" id="yc9-mK-l2B"/>

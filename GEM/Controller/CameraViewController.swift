@@ -1,9 +1,9 @@
 //
 //  CameraViewController.swift
-//  faceLogin
+//  GEM
 //
-//  Created by Vasil Nunev on 13/11/2016.
-//  Copyright © 2016 nunev. All rights reserved.
+//  Created by Emre Özdil on 10/10/2017.
+//  Copyright © 2017 Emre Özdil. All rights reserved.
 //
 
 import UIKit
@@ -40,8 +40,8 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        view.addSubview(cameraView)
-//        setUpCameraView()
+        //        view.addSubview(cameraView)
+        //        setUpCameraView()
         
         let storage = Storage.storage()
         let storageRef = storage.reference(forURL: "gs://gem-ios-3a8e7.appspot.com/")
@@ -56,7 +56,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         cameraView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         cameraView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
     }
-
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -83,7 +83,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                             
                             cameraView.layer.addSublayer(previewLayer)
                             cameraView.addSubview(button)
-//                            setUpTakePictureButton()
+                            //                            setUpTakePictureButton()
                             
                             previewLayer.position = CGPoint (x: self.cameraView.frame.width / 2, y: self.cameraView.frame.height / 2)
                             previewLayer.bounds = cameraView.frame
@@ -297,9 +297,10 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         self.present(alert, animated: true, completion: nil)
         
     }
-
+    
     @IBAction func takePhoto() {
         let settings = AVCapturePhotoSettings()
         self.sessionOutput.capturePhoto(with: settings, delegate: self)
     }
 }
+
