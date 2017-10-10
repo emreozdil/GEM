@@ -1,4 +1,4 @@
-# Mantle Sample [![Travis CI](https://travis-ci.com/emreozdil/GEM.svg?token=W1PFc5VyLR7zwNLsVzpB&branch=master)](https://travis-ci.org/emreozdil/MantleSample/builds)
+# GEM [![Travis CI](https://travis-ci.com/emreozdil/GEM.svg?token=W1PFc5VyLR7zwNLsVzpB&branch=master)](https://travis-ci.com/emreozdil/GEM/builds)
 
 ### Introduction
 Two authentication login application.
