@@ -56,14 +56,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         cameraView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         cameraView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
     }
-    
-//    func setUpTakePictureButton() {
-//        // MARK: X, Y, Width, Height
-//        takePictureButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//        takePictureButton.bottomAnchor.constraint(equalTo: cameraView.bottomAnchor, constant: -12).isActive = true
-//        takePictureButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
-//        takePictureButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-//    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -138,7 +131,9 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                     if (faces!.count) > 1 || (faces!.count) == 0 {
                         print("too many or not at all faces")
                         let alert = UIAlertController(title: "Error", message: "Too many or not at all faces", preferredStyle: .alert)
-                        let action = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+                        let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                            self.dismiss(animated: true, completion: nil)
+                        })
                         alert.addAction(action)
                         self.present(alert, animated: true, completion: nil)
                         self.failLogin()
@@ -148,7 +143,9 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                     let uploadTask = imageRef.putData(dataImage, metadata: nil, completion: { (metadata, error) in
                         if error != nil {
                             let alert = UIAlertController(title: "Error", message: error?.localizedDescription ?? "error", preferredStyle: .alert)
-                            let action = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+                            let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                                self.dismiss(animated: true, completion: nil)
+                            })
                             alert.addAction(action)
                             self.present(alert, animated: true, completion: nil)
                             return
@@ -195,7 +192,9 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
             
             if error != nil {
                 let alert = UIAlertController(title: "Error", message: error?.localizedDescription ?? "error", preferredStyle: .alert)
-                let action = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+                let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                    self.dismiss(animated: true, completion: nil)
+                })
                 alert.addAction(action)
                 self.present(alert, animated: true, completion: nil)
                 return
@@ -204,7 +203,9 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
             if (faces!.count) > 1 || (faces!.count) == 0 {
                 print("too many or not at all faces")
                 let alert = UIAlertController(title: "Error", message: "Too many or not at all faces", preferredStyle: .alert)
-                let action = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+                let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                    self.dismiss(animated: true, completion: nil)
+                })
                 alert.addAction(action)
                 self.present(alert, animated: true, completion: nil)
                 self.failLogin()
@@ -218,7 +219,9 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
             client.detect(withUrl: url, returnFaceId: true, returnFaceLandmarks: true, returnFaceAttributes: [], completionBlock: { (faces, error) in
                 if error != nil {
                     let alert = UIAlertController(title: "Error", message: error?.localizedDescription ?? "error", preferredStyle: .alert)
-                    let action = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+                    let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                        self.dismiss(animated: true, completion: nil)
+                    })
                     alert.addAction(action)
                     self.present(alert, animated: true, completion: nil)
                     return
@@ -230,7 +233,9 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                     
                     if error != nil{
                         let alert = UIAlertController(title: "Error", message: error?.localizedDescription ?? "error", preferredStyle: .alert)
-                        let action = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+                        let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                            self.dismiss(animated: true, completion: nil)
+                        })
                         alert.addAction(action)
                         self.present(alert, animated: true, completion: nil)
                         return
@@ -277,16 +282,18 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     func failLogin() {
         // THE PERSON IS NOT THE SAME
+        do {
+            try Auth.auth().signOut()
+        }catch{
+        }
+        
         let alert = UIAlertController(title: "Failed Login", message: "Not same person", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
             self.dismiss(animated: true, completion: nil)
         })
         
         alert.addAction(action)
-        do {
-            try Auth.auth().signOut()
-        }catch{
-        }
+        
         self.present(alert, animated: true, completion: nil)
         
     }
