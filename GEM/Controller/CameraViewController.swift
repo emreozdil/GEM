@@ -37,23 +37,6 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     var faceFromPhoto: MPOFace!
     var faceFromFirebase: MPOFace!
     
-//    let cameraView: UIView = {
-//        let view = UIView()
-//        view.backgroundColor = UIColor.lightGray
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        return view
-//    }()
-    
-//    let takePictureButton: UIButton = {
-//        let button = UIButton(type: .custom)
-//        button.setTitle("Take Picture", for: .normal)
-//        button.setTitleColor(UIColor.white, for: .normal)
-//        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        button.addTarget(self, action: #selector(takePhoto), for: .touchUpInside)
-//        return button
-//    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -116,19 +99,12 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                             
                         }
                     }
-                    
-                    
                 } catch let avError {
                     print(avError)
                 }
-                
-                
             }
-            
         }
-        
     }
-    
     
     func photoOutput(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
         
@@ -147,7 +123,6 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                 
                 self.personImage = UIImage(data: dataImage)
                 
-                //let client = MPOFaceServiceClient(endpointAndSubscriptionKey: "https://westeurope.api.cognitive.microsoft.com/face/v1.0", key: "f8e6358992234d0a95b3a33570e2b181")!
                 let client = MPOFaceServiceClient(subscriptionKey: "56b200942b664e06b998dd9e30b93dfe")!
                 
                 
@@ -162,13 +137,20 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                     
                     if (faces!.count) > 1 || (faces!.count) == 0 {
                         print("too many or not at all faces")
+                        let alert = UIAlertController(title: "Error", message: "Too many or not at all faces", preferredStyle: .alert)
+                        let action = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+                        alert.addAction(action)
+                        self.present(alert, animated: true, completion: nil)
                         self.failLogin()
                         return
                     }
                     
                     let uploadTask = imageRef.putData(dataImage, metadata: nil, completion: { (metadata, error) in
                         if error != nil {
-                            print(error!)
+                            let alert = UIAlertController(title: "Error", message: error?.localizedDescription ?? "error", preferredStyle: .alert)
+                            let action = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+                            alert.addAction(action)
+                            self.present(alert, animated: true, completion: nil)
                             return
                         }
                     })
@@ -195,17 +177,10 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                         print(error!)
                         return
                     }
-                    
-                    
                     self.verify(withURL: url!.absoluteString)
-                    
                 })
             }
-            
         }
-        
-        
-        
     }
     
     
@@ -219,12 +194,19 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         client.detect(with: data, returnFaceId: true, returnFaceLandmarks: true, returnFaceAttributes: [], completionBlock: { (faces, error) in
             
             if error != nil {
-                print(error!)
+                let alert = UIAlertController(title: "Error", message: error?.localizedDescription ?? "error", preferredStyle: .alert)
+                let action = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+                alert.addAction(action)
+                self.present(alert, animated: true, completion: nil)
                 return
             }
             
             if (faces!.count) > 1 || (faces!.count) == 0 {
                 print("too many or not at all faces")
+                let alert = UIAlertController(title: "Error", message: "Too many or not at all faces", preferredStyle: .alert)
+                let action = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+                alert.addAction(action)
+                self.present(alert, animated: true, completion: nil)
                 self.failLogin()
                 self.actIdc.stopAnimating()
                 return
@@ -235,7 +217,10 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
             
             client.detect(withUrl: url, returnFaceId: true, returnFaceLandmarks: true, returnFaceAttributes: [], completionBlock: { (faces, error) in
                 if error != nil {
-                    print(error!)
+                    let alert = UIAlertController(title: "Error", message: error?.localizedDescription ?? "error", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+                    alert.addAction(action)
+                    self.present(alert, animated: true, completion: nil)
                     return
                 }
                 
@@ -243,9 +228,11 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                 
                 client.verify(withFirstFaceId: self.faceFromPhoto.faceId, faceId2: self.faceFromFirebase.faceId, completionBlock: { (result, error) in
                     
-                    
                     if error != nil{
-                        print(error!)
+                        let alert = UIAlertController(title: "Error", message: error?.localizedDescription ?? "error", preferredStyle: .alert)
+                        let action = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+                        alert.addAction(action)
+                        self.present(alert, animated: true, completion: nil)
                         return
                     }
                     
@@ -258,17 +245,10 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                     }else {
                         self.failLogin()
                     }
-                    
-                    
-                    
                 })
-                
             })
-            
         })
-        
     }
-    
     
     func showActivityIndicator(onView: UIView) {
         let container: UIView = UIView()
@@ -299,8 +279,6 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         // THE PERSON IS NOT THE SAME
         let alert = UIAlertController(title: "Failed Login", message: "Not same person", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
-//            let viewController = LoginRegisterViewController()
-//            self.present(viewController, animated: true, completion: nil)
             self.dismiss(animated: true, completion: nil)
         })
         
@@ -312,10 +290,6 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         self.present(alert, animated: true, completion: nil)
         
     }
-//    @objc func takePhoto() {
-//        let settings = AVCapturePhotoSettings()
-//        self.sessionOutput.capturePhoto(with: settings, delegate: self)
-//    }
 
     @IBAction func takePhoto() {
         let settings = AVCapturePhotoSettings()

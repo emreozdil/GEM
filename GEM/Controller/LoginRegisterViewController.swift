@@ -210,17 +210,11 @@ class LoginRegisterViewController: UIViewController {
                 self.present(alert, animated: true, completion: nil)
                 return
             }
-            
-            // Succesfully Logged in
-//            let cameraViewController = CameraViewController()
-//            cameraViewController.photoType = .login
-//            self.present(cameraViewController, animated: true, completion: nil)
 
             let cameraViewController = UIStoryboard(name: "Camera", bundle: nil).instantiateInitialViewController() as! CameraViewController
             
             cameraViewController.photoType = .login
             self.present(cameraViewController, animated: true, completion: nil)
-            //self.dismiss(animated: true, completion: nil)
         }
     }
     
@@ -233,7 +227,7 @@ class LoginRegisterViewController: UIViewController {
         let shaHex =  shaData!.map { String(format: "%02hhx", $0) }.joined()
         print("shaHex: \(shaHex)")
         
-        Auth.auth().createUser(withEmail: email, password: shaHex) { (user, error) in
+        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             if error != nil {
                 print(error ?? "error")
                 let alert = UIAlertController(title: "Error", message: error?.localizedDescription ?? "error", preferredStyle: .alert)
@@ -264,17 +258,12 @@ class LoginRegisterViewController: UIViewController {
                     self.present(alert, animated: true, completion: nil)
                     return
                 } else {
-//                    let cameraViewController = CameraViewController()
-//                    cameraViewController.photoType = .register
-//                    self.present(cameraViewController, animated: true, completion: nil)
                     let cameraViewController = UIStoryboard(name: "Camera", bundle: nil).instantiateInitialViewController() as! CameraViewController
                     
                     cameraViewController.photoType = .register
                     self.present(cameraViewController, animated: true, completion: nil)
 
-                    
                     print("Save user succesfull Firebase Database")
-                    //self.dismiss(animated: true, completion: nil)
                 }
             })
         }
