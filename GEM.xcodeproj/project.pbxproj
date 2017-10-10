@@ -90,7 +90,6 @@
 			isa = PBXGroup;
 			children = (
 				9A3431BE1F85165200C79A62 /* HashPassword.swift */,
-				9A3431BD1F8514A600C79A62 /* BridgingHeader.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -117,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				9AAC0FE71F8283E20082FD56 /* AppDelegate.swift */,
+				9A3431BD1F8514A600C79A62 /* BridgingHeader.h */,
 				9A4A4A261F8BC9FF00862367 /* Model */,
 				9A4A4A251F8BC9F700862367 /* View */,
 				9A4A4A241F8BC9E200862367 /* Controller */,
@@ -161,7 +161,7 @@
 				TargetAttributes = {
 					9AAC0FE31F8283E20082FD56 = {
 						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -400,12 +400,13 @@
 			baseConfigurationReference = 69902067F2ADBFEF2BB12940 /* Pods-GEM.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 73Y2UKHRPT;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = GEM/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.emreozdil.GEM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -416,12 +417,13 @@
 			baseConfigurationReference = 6EE0DE03E3935D83D781AA0C /* Pods-GEM.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 73Y2UKHRPT;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = GEM/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.emreozdil.GEM;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
