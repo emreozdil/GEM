@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         view.backgroundColor = UIColor(r: 255, g: 255, b: 255)
         view.addSubview(logOutButton)
         setLogOutButton()

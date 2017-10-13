@@ -160,7 +160,8 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                 previewLayer.removeFromSuperlayer()
                 
                 let viewController = ViewController()
-                self.present(viewController, animated: true, completion:  nil)
+                let navigationController = UINavigationController(rootViewController: viewController)
+                self.present(navigationController, animated: true, completion: nil)
                 actIdc.stopAnimating()
             }else if photoType == PhotoType.login {
                 
@@ -245,7 +246,8 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                     if result!.isIdentical {
                         // THE PERSON IS THE SAME
                         let viewController = ViewController()
-                        self.present(viewController, animated: true, completion: nil)
+                        let navigationController = UINavigationController(rootViewController: viewController)
+                        self.present(navigationController, animated: true, completion: nil)
                         
                     }else {
                         self.failLogin()
