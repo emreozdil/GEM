@@ -23,6 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = UINavigationController(rootViewController: ViewController())
 
         FirebaseApp.configure()
+        do {
+            try Auth.auth().signOut()
+        } catch let logoutError{
+            print(logoutError)
+        }
         return true
     }
 

@@ -101,8 +101,14 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     func photoOutput(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
         
-        if let error = error {
-            print(error.localizedDescription)
+        if error != nil {
+            print(error?.localizedDescription ?? "error")
+            let alert = UIAlertController(title: "Error", message: error?.localizedDescription ?? "error", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                self.dismiss(animated: true, completion: nil)
+            })
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: nil)
             return
         }
         if let sampleBuffer = photoSampleBuffer, let previewBuffer = photoSampleBuffer, let dataImage = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: sampleBuffer, previewPhotoSampleBuffer: previewBuffer) {
@@ -125,6 +131,12 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                     
                     if error != nil {
                         print(error!)
+                        let alert = UIAlertController(title: "Error", message: error?.localizedDescription ?? "error", preferredStyle: .alert)
+                        let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                            self.dismiss(animated: true, completion: nil)
+                        })
+                        alert.addAction(action)
+                        self.present(alert, animated: true, completion: nil)
                         return
                     }
                     
@@ -173,6 +185,12 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                     
                     if error != nil {
                         print(error!)
+                        let alert = UIAlertController(title: "Error", message: error?.localizedDescription ?? "error", preferredStyle: .alert)
+                        let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                            self.dismiss(animated: true, completion: nil)
+                        })
+                        alert.addAction(action)
+                        self.present(alert, animated: true, completion: nil)
                         return
                     }
                     self.verify(withURL: url!.absoluteString)
