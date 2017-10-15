@@ -80,7 +80,7 @@ class LoginRegisterViewController: UIViewController {
     
     let loginRegisterButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = UIColor(r: 80, g: 101, b: 161)
+        button.backgroundColor = UIColor(r: 10, g: 150, b: 30)
         button.setTitle("Register", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
@@ -94,7 +94,7 @@ class LoginRegisterViewController: UIViewController {
         
         self.hideKeyboardWhenTappedAround()
         
-        view.backgroundColor = UIColor(r: 61, g: 91, b: 151)
+        view.backgroundColor = UIColor(r: 33, g: 77, b: 68)
         
         view.addSubview(profileImageView)
         view.addSubview(loginRegisterSegmentedControl)
@@ -263,7 +263,7 @@ class LoginRegisterViewController: UIViewController {
                     cameraViewController.photoType = .register
                     self.present(cameraViewController, animated: true, completion: nil)
 
-                    print("Save user succesfull Firebase Database")
+                    print("Saved user succesfully to Firebase Database")
                 }
             })
         }

@@ -141,8 +141,8 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                     }
                     
                     if (faces!.count) > 1 || (faces!.count) == 0 {
-                        print("too many or not at all faces")
-                        let alert = UIAlertController(title: "Error", message: "Too many or not at all faces", preferredStyle: .alert)
+                        print("There is more than one or no face in the picture")
+                        let alert = UIAlertController(title: "Error", message: "There is more than one or no face in the picture", preferredStyle: .alert)
                         let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
                             self.dismiss(animated: true, completion: nil)
                         })
@@ -161,6 +161,9 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                             alert.addAction(action)
                             self.present(alert, animated: true, completion: nil)
                             return
+                        }
+                        else{
+                            print("picture is saved successfully")
                         }
                     })
                     
@@ -220,8 +223,8 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
             }
             
             if (faces!.count) > 1 || (faces!.count) == 0 {
-                print("too many or not at all faces")
-                let alert = UIAlertController(title: "Error", message: "Too many or not at all faces", preferredStyle: .alert)
+                print("There is more than one or no face in the picture")
+                let alert = UIAlertController(title: "Error", message: "There is more than one or no face in the picture", preferredStyle: .alert)
                 let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
                     self.dismiss(animated: true, completion: nil)
                 })
@@ -307,7 +310,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         }catch{
         }
         
-        let alert = UIAlertController(title: "Failed Login", message: "Not same person", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Failed Login", message: "Not the same person", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
             self.dismiss(animated: true, completion: nil)
         })

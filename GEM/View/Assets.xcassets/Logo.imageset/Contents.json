@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Logo-Vertical-square-300x300.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Logo.png",
       "scale" : "2x"
     },
     {
