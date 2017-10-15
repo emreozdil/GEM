@@ -96,11 +96,13 @@ class LoginRegisterViewController: UIViewController {
         
         view.backgroundColor = UIColor(r: 33, g: 77, b: 68)
         
+        // Add subviews
         view.addSubview(profileImageView)
         view.addSubview(loginRegisterSegmentedControl)
         view.addSubview(inputsContainerView)
         view.addSubview(loginRegisterButton)
         
+        // Set Up Views
         setupPorifleImageView()
         setUpLoginRegisterSegmentedControl()
         setUpContainerView()
@@ -197,6 +199,7 @@ class LoginRegisterViewController: UIViewController {
             return
         }
         
+        // Login via Firebase
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if error != nil {
                 print(error ?? "error")
@@ -206,7 +209,7 @@ class LoginRegisterViewController: UIViewController {
                 self.present(alert, animated: true, completion: nil)
                 return
             }
-
+            
             let cameraViewController = UIStoryboard(name: "Camera", bundle: nil).instantiateInitialViewController() as! CameraViewController
             
             cameraViewController.photoType = .login
@@ -223,6 +226,7 @@ class LoginRegisterViewController: UIViewController {
         let shaHex =  shaData!.map { String(format: "%02hhx", $0) }.joined()
         print("shaHex: \(shaHex)")
         
+        // Register via Firebase
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             if error != nil {
                 print(error ?? "error")
@@ -245,6 +249,8 @@ class LoginRegisterViewController: UIViewController {
                 "email": email,
                 "password": shaHex
             ]
+            
+            // Store user information to Firebase Database
             userReference.updateChildValues(values, withCompletionBlock: { (error, reference) in
                 if error != nil {
                     print(error ?? "error")
@@ -258,7 +264,7 @@ class LoginRegisterViewController: UIViewController {
                     
                     cameraViewController.photoType = .register
                     self.present(cameraViewController, animated: true, completion: nil)
-
+                    
                     print("Saved user succesfully to Firebase Database")
                 }
             })
@@ -294,9 +300,9 @@ class LoginRegisterViewController: UIViewController {
     }
 }
 
+
 extension UIColor{
     convenience init(r:CGFloat, g: CGFloat, b: CGFloat) {
         self.init(red: r/255, green: g/255, blue: b/255, alpha: 1)
     }
 }
-

@@ -20,7 +20,6 @@ enum PhotoType {
 
 class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     
-    
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var button: UIButton!
     
@@ -40,13 +39,9 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //        view.addSubview(cameraView)
-        //        setUpCameraView()
-        
         let storage = Storage.storage()
         let storageRef = storage.reference(forURL: "gs://gem-ios-3a8e7.appspot.com/")
         usersStorageRef = storageRef.child("users")
-        
     }
     
     func setUpCameraView() {
@@ -57,10 +52,10 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         cameraView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        // Set Up camera settings
         let deviceSession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInDualCamera,.builtInTelephotoCamera,.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .unspecified)
         
         for device in (deviceSession.devices) {
@@ -83,7 +78,6 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                             
                             cameraView.layer.addSublayer(previewLayer)
                             cameraView.addSubview(button)
-                            //                            setUpTakePictureButton()
                             
                             previewLayer.position = CGPoint (x: self.cameraView.frame.width / 2, y: self.cameraView.frame.height / 2)
                             previewLayer.bounds = cameraView.frame
@@ -99,6 +93,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         }
     }
     
+    // Capture Photo function
     func photoOutput(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
         
         if error != nil {
@@ -113,6 +108,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         }
         if let sampleBuffer = photoSampleBuffer, let previewBuffer = photoSampleBuffer, let dataImage = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: sampleBuffer, previewPhotoSampleBuffer: previewBuffer) {
             
+            // Reference to Firabase Storage
             let userID = Auth.auth().currentUser?.uid
             let imageRef = usersStorageRef.child("\(userID!).jpg")
             
@@ -124,9 +120,9 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                 
                 let client = MPOFaceServiceClient(subscriptionKey: "56b200942b664e06b998dd9e30b93dfe")!
                 
-                
                 let data = UIImageJPEGRepresentation(self.personImage!, 0.8)
                 
+                // Detect real-time photo
                 client.detect(with: data!, returnFaceId: true, returnFaceLandmarks: true, returnFaceAttributes: [], completionBlock: { (faces, error) in
                     
                     if error != nil {
@@ -140,6 +136,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                         return
                     }
                     
+                    // Control the number of face
                     if (faces!.count) > 1 || (faces!.count) == 0 {
                         print("There is more than one or no face in the picture")
                         let alert = UIAlertController(title: "Error", message: "There is more than one or no face in the picture", preferredStyle: .alert)
@@ -152,6 +149,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                         return
                     }
                     
+                    // Upload to Firebase Storage
                     let uploadTask = imageRef.putData(dataImage, metadata: nil, completion: { (metadata, error) in
                         if error != nil {
                             let alert = UIAlertController(title: "Error", message: error?.localizedDescription ?? "error", preferredStyle: .alert)
@@ -189,6 +187,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                 
                 captureSession.stopRunning()
                 
+                // Download from Firebase Storage
                 imageRef.downloadURL(completion: { (url, error) in
                     
                     if error != nil {
@@ -206,7 +205,6 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
             }
         }
     }
-    
     
     func verify(withURL url: String) {
         
@@ -271,7 +269,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                     
                     self.actIdc.stopAnimating()
                     if result!.isIdentical {
-                        // THE PERSON IS THE SAME
+                        // The person is same
                         let viewController = ViewController()
                         let navigationController = UINavigationController(rootViewController: viewController)
                         self.present(navigationController, animated: true, completion: nil)
@@ -284,6 +282,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         })
     }
     
+    // Loading view
     func showActivityIndicator(onView: UIView) {
         let container: UIView = UIView()
         container.frame = onView.frame
@@ -310,7 +309,6 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     }
     
     func failLogin() {
-        // THE PERSON IS NOT THE SAME
         do {
             try Auth.auth().signOut()
         }catch{
@@ -332,4 +330,3 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         self.sessionOutput.capturePhoto(with: settings, delegate: self)
     }
 }
-
