@@ -163,21 +163,26 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                             return
                         }
                         else{
+                            self.actIdc.stopAnimating()
+                            
                             print("picture is saved successfully")
+                            let alert = UIAlertController(title: "Successful", message: "Picture is saved successfully", preferredStyle: .alert)
+                            let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                                self.previewLayer.removeFromSuperlayer()
+                                let viewController = ViewController()
+                                let navigationController = UINavigationController(rootViewController: viewController)
+                                self.present(navigationController, animated: true, completion: nil)
+                            })
+                            alert.addAction(action)
+                            self.present(alert, animated: true, completion: nil)
                         }
                     })
                     
                     uploadTask.resume()
                     
                 })
+                self.captureSession.stopRunning()
                 
-                captureSession.stopRunning()
-                previewLayer.removeFromSuperlayer()
-                
-                let viewController = ViewController()
-                let navigationController = UINavigationController(rootViewController: viewController)
-                self.present(navigationController, animated: true, completion: nil)
-                actIdc.stopAnimating()
             }else if photoType == PhotoType.login {
                 
                 self.personImage = UIImage(data: dataImage)

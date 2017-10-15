@@ -12,26 +12,38 @@ import FirebaseAuth
 
 class ViewController: UIViewController {
     
-    let logOutButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setTitle("Log Out", for: .normal)
-        button.setTitleColor(UIColor.blue, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(handleLogout), for: .touchUpInside)
-        return button
+    let message: UILabel = {
+        let label = UILabel()
+        label.text = "Hi!"
+        label.font = UIFont.boldSystemFont(ofSize: 32)
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         view.backgroundColor = UIColor(r: 255, g: 255, b: 255)
-        view.addSubview(logOutButton)
-        setLogOutButton()
+        view.addSubview(message)
+        setMessage()
         
-        // User is not logged in
-        if Auth.auth().currentUser?.uid == nil {
+        guard let uid = Auth.auth().currentUser?.uid else {
             perform(#selector(handleLogout))
+            return
+        }
+        let ref = Database.database().reference(fromURL: "https://gem-ios-3a8e7.firebaseio.com/")
+        ref.child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? NSDictionary
+            let name = value?["name"] as? String ?? ""
+            self.message.text = "Hi, \(name)"
+        }) { (error) in
+            print(error.localizedDescription)
+            let alert = UIAlertController(title: "Error", message: error.localizedDescription , preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -43,21 +55,14 @@ class ViewController: UIViewController {
         }
         let vc = LoginRegisterViewController()
         self.present(vc, animated: true, completion: nil)
-//        let loginRegisterViewController = CameraViewController()
-//        loginRegisterViewController.photoType = .register
-//        present(loginRegisterViewController, animated: true, completion: nil)
-//        let cameraViewController = UIStoryboard(name: "Camera", bundle: nil).instantiateInitialViewController() as! CameraViewController
-//
-//        cameraViewController.photoType = .login
-//        self.present(cameraViewController, animated: true, completion: nil)
     }
     
-    func setLogOutButton() {
+    func setMessage() {
         // MARK: X, Y, Width, Height
-        logOutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        logOutButton.bottomAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        logOutButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        logOutButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        message.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        message.bottomAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        message.widthAnchor.constraint(equalToConstant: 250).isActive = true
+        message.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
 }
 
