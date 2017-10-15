@@ -12,10 +12,26 @@ Two-factor authentication login application.
 - ProjectOxfordFace (Microsoft Face API)
 
 ## Usage
-Change bundle identifier and development team
+Modify project settings and API functions
+
+### CocoaPods
+
+[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
+
+```bash
+$ gem install cocoapods
+```
+
+Then, run the following command:
+
+```bash
+$ pod install
+```
+
+### Change bundle identifier and development team
 <img src="https://firebasestorage.googleapis.com/v0/b/gem-ios-3a8e7.appspot.com/o/Project%20Settings.png?alt=media&token=6eaf3975-2424-46ac-b827-e42e53f9adbc">
 
-Modify API functions
+
 
 ### Firebase and ProjectOxfordFace
 Using Firebase back-end API and ProjectOxfordFace Face API
