@@ -1,7 +1,7 @@
 # GEM [![Travis CI](https://travis-ci.com/emreozdil/GEM.svg?token=W1PFc5VyLR7zwNLsVzpB&branch=master)](https://travis-ci.com/emreozdil/GEM/builds)
 
 ## Introduction
-Two authentication login application.
+Two-factor authentication login application.
 1. Email and password authentication via Firebase
 2. Facial authentication verifies whether the database view and the current view are the same via Microsoft Face API
 
