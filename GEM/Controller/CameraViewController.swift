@@ -214,7 +214,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         
         let data = UIImageJPEGRepresentation(self.personImage!, 0.8)
         
-        
+        // Detect real-time photo
         client.detect(with: data, returnFaceId: true, returnFaceLandmarks: true, returnFaceAttributes: [], completionBlock: { (faces, error) in
             
             if error != nil {
@@ -242,7 +242,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
             
             self.faceFromPhoto = faces![0]
             
-            
+            // Detect storage photo
             client.detect(withUrl: url, returnFaceId: true, returnFaceLandmarks: true, returnFaceAttributes: [], completionBlock: { (faces, error) in
                 if error != nil {
                     let alert = UIAlertController(title: "Error", message: error?.localizedDescription ?? "error", preferredStyle: .alert)
@@ -256,6 +256,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                 
                 self.faceFromFirebase = faces![0]
                 
+                // Verify photos
                 client.verify(withFirstFaceId: self.faceFromPhoto.faceId, faceId2: self.faceFromFirebase.faceId, completionBlock: { (result, error) in
                     
                     if error != nil{

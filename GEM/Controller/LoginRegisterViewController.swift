@@ -197,10 +197,6 @@ class LoginRegisterViewController: UIViewController {
             return
         }
         
-        let shaData = HashPassword.sha256(string: password)
-        let shaHex =  shaData!.map { String(format: "%02hhx", $0) }.joined()
-        print("shaHex: \(shaHex)")
-        
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if error != nil {
                 print(error ?? "error")
