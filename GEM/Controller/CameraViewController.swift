@@ -127,6 +127,14 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                     
                     if error != nil {
                         print(error!)
+                        let user = Auth.auth().currentUser
+                        user?.delete { error in
+                            if let error = error {
+                                print(error)
+                            } else {
+                                print("User successfully deleted")
+                            }
+                        }
                         let alert = UIAlertController(title: "Error", message: error?.localizedDescription ?? "error", preferredStyle: .alert)
                         let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
                             self.dismiss(animated: true, completion: nil)
@@ -139,6 +147,14 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                     // Control the number of face
                     if (faces!.count) > 1 || (faces!.count) == 0 {
                         print("There is more than one or no face in the picture")
+                        let user = Auth.auth().currentUser
+                        user?.delete { error in
+                            if let error = error {
+                                print(error)
+                            } else {
+                                print("User successfully deleted")
+                            }
+                        }
                         let alert = UIAlertController(title: "Error", message: "There is more than one or no face in the picture", preferredStyle: .alert)
                         let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
                             self.dismiss(animated: true, completion: nil)
@@ -152,6 +168,14 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                     // Upload to Firebase Storage
                     let uploadTask = imageRef.putData(dataImage, metadata: nil, completion: { (metadata, error) in
                         if error != nil {
+                            let user = Auth.auth().currentUser
+                            user?.delete { error in
+                                if let error = error {
+                                    print(error)
+                                } else {
+                                    print("User successfully deleted")
+                                }
+                            }
                             let alert = UIAlertController(title: "Error", message: error?.localizedDescription ?? "error", preferredStyle: .alert)
                             let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
                                 self.dismiss(animated: true, completion: nil)
@@ -163,7 +187,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                         else{
                             self.actIdc.stopAnimating()
                             
-                            print("picture is saved successfully")
+                            print("Picture is saved successfully")
                             let alert = UIAlertController(title: "Successful", message: "Picture is saved successfully", preferredStyle: .alert)
                             let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
                                 self.previewLayer.removeFromSuperlayer()
