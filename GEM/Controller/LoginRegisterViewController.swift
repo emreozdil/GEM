@@ -80,7 +80,7 @@ class LoginRegisterViewController: UIViewController {
     
     let loginRegisterButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = UIColor(r: 10, g: 150, b: 30)
+        button.backgroundColor = UIColor(r: 4, g: 174, b: 114)
         button.setTitle("Register", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
