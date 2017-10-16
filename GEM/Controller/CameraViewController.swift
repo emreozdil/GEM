@@ -127,12 +127,20 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                     
                     if error != nil {
                         print(error!)
+                        Database.database().reference(fromURL: "https://gem-ios-3a8e7.firebaseio.com/").child("users").child(Auth.auth().currentUser!.uid).removeValue(completionBlock: { (error, refer) in
+                            if error != nil {
+                                print(error?.localizedDescription ?? "error")
+                            } else {
+                                print("User removed correctly from database")
+                            }
+                        })
                         let user = Auth.auth().currentUser
                         user?.delete { error in
                             if let error = error {
                                 print(error)
                             } else {
-                                print("User successfully deleted")
+                                print("User successfully deleted from Firebase Auth")
+                                
                             }
                         }
                         let alert = UIAlertController(title: "Error", message: error?.localizedDescription ?? "error", preferredStyle: .alert)
@@ -147,12 +155,20 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                     // Control the number of face
                     if (faces!.count) > 1 || (faces!.count) == 0 {
                         print("There is more than one or no face in the picture")
+                        Database.database().reference(fromURL: "https://gem-ios-3a8e7.firebaseio.com/").child("users").child(Auth.auth().currentUser!.uid).removeValue(completionBlock: { (error, refer) in
+                            if error != nil {
+                                print(error?.localizedDescription ?? "error")
+                            } else {
+                                print("User removed correctly from database")
+                            }
+                        })
                         let user = Auth.auth().currentUser
                         user?.delete { error in
                             if let error = error {
                                 print(error)
                             } else {
-                                print("User successfully deleted")
+                                print("User successfully deleted from Firebase Auth")
+                                
                             }
                         }
                         let alert = UIAlertController(title: "Error", message: "There is more than one or no face in the picture", preferredStyle: .alert)
