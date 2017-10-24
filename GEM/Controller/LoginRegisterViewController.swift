@@ -241,7 +241,7 @@ class LoginRegisterViewController: UIViewController {
             guard let uid = user?.uid else {
                 return
             }
-            let ref = Database.database().reference(fromURL: "https://gem-ios-3a8e7.firebaseio.com/")
+            let ref = Database.database().reference()
             let userReference = ref.child("users").child(uid)
             
             let values = [

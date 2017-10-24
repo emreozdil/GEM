@@ -32,7 +32,7 @@ class ViewController: UIViewController {
             perform(#selector(handleLogout))
             return
         }
-        let ref = Database.database().reference(fromURL: "https://gem-ios-3a8e7.firebaseio.com/")
+        let ref = Database.database().reference()
         ref.child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
             let value = snapshot.value as? NSDictionary

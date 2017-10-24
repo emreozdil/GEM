@@ -40,7 +40,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         super.viewDidLoad()
         
         let storage = Storage.storage()
-        let storageRef = storage.reference(forURL: "gs://gem-ios-3a8e7.appspot.com/")
+        let storageRef = storage.reference()
         usersStorageRef = storageRef.child("users")
     }
     
@@ -127,7 +127,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                     
                     if error != nil {
                         print(error!)
-                        Database.database().reference(fromURL: "https://gem-ios-3a8e7.firebaseio.com/").child("users").child(Auth.auth().currentUser!.uid).removeValue(completionBlock: { (error, refer) in
+                        Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).removeValue(completionBlock: { (error, refer) in
                             if error != nil {
                                 print(error?.localizedDescription ?? "error")
                             } else {
@@ -155,7 +155,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                     // Control the number of face
                     if (faces!.count) > 1 || (faces!.count) == 0 {
                         print("There is more than one or no face in the picture")
-                        Database.database().reference(fromURL: "https://gem-ios-3a8e7.firebaseio.com/").child("users").child(Auth.auth().currentUser!.uid).removeValue(completionBlock: { (error, refer) in
+                        Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).removeValue(completionBlock: { (error, refer) in
                             if error != nil {
                                 print(error?.localizedDescription ?? "error")
                             } else {
