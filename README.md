@@ -33,12 +33,19 @@ $ pod install
 
 
 
+
 ### Firebase and ProjectOxfordFace
 Using Firebase back-end API and ProjectOxfordFace Face API
+
+Set Your Own Face API Key
+```swift
+let client = MPOFaceServiceClient(subscriptionKey: "Microsoft Face API KEY")!
+```
 
 #### Registration
 User authentication, add to database and store of photo
 
+<img src="/Screenshots/register.PNG" width="320px">
 ##### Register User
 ```swift
 Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
@@ -76,9 +83,13 @@ client.detect(with: data!, returnFaceId: true, returnFaceLandmarks: true, return
 
 })
 ```
+<img src="/Screenshots/camera.PNG" width="320px">
+<img src="/Screenshots/welcome.PNG" width="320px">
 
 #### Login
 User authentication, verify between storage photo and real-time photo
+
+<img src="/Screenshots/login.PNG" width="320px">
 
 ##### Login User
 ```swift
