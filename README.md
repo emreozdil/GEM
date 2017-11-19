@@ -1,4 +1,4 @@
-# GEM [![Travis CI](https://travis-ci.com/emreozdil/GEM.svg?token=W1PFc5VyLR7zwNLsVzpB&branch=master)](https://travis-ci.com/emreozdil/GEM/builds)
+# GEM [![Travis CI](https://travis-ci.org/emreozdil/GEM.svg?branch=master)](https://travis-ci.org/emreozdil/GEM/builds)
 
 ## Introduction
 Two-factor authentication login application.
@@ -46,6 +46,7 @@ let client = MPOFaceServiceClient(subscriptionKey: "Microsoft Face API KEY")!
 User authentication, add to database and store of photo
 
 <img src="/Screenshots/register.PNG" width="320px">
+
 ##### Register User
 ```swift
 Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
@@ -83,8 +84,7 @@ client.detect(with: data!, returnFaceId: true, returnFaceLandmarks: true, return
 
 })
 ```
-<img src="/Screenshots/camera.PNG" width="320px">
-<img src="/Screenshots/welcome.PNG" width="320px">
+<img src="/Screenshots/camera.PNG" width="320px"><img src="/Screenshots/welcome.PNG" width="320px">
 
 #### Login
 User authentication, verify between storage photo and real-time photo
