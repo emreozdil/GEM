@@ -238,7 +238,7 @@ class LoginRegisterViewController: UIViewController {
             }
             
             // Succesfully Authenticated User
-            guard let uid = user?.uid else {
+            guard let uid = user?.user.uid else {
                 return
             }
             let ref = Database.database().reference()
