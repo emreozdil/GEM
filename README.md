@@ -14,6 +14,10 @@ Two-factor authentication login application.
 ## Usage
 Modify project settings and API functions
 
+- Create Firebase Project for email and password authentication
+- Change GoogleService-Info.plist
+- Change Microsoft Face API key
+
 ### CocoaPods
 
 [CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:

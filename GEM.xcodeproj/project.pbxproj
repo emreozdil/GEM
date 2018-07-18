@@ -138,7 +138,6 @@
 				9AAC0FE11F8283E20082FD56 /* Frameworks */,
 				9AAC0FE21F8283E20082FD56 /* Resources */,
 				3FEEF7DA8498C5803AFDD09F /* [CP] Embed Pods Frameworks */,
-				35401FBC0D3056E7C92A3F71 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -214,21 +213,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		35401FBC0D3056E7C92A3F71 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GEM/Pods-GEM-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		3FEEF7DA8498C5803AFDD09F /* [CP] Embed Pods Frameworks */ = {
@@ -402,7 +386,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 73Y2UKHRPT;
+				DEVELOPMENT_TEAM = 6FUKB8LKZE;
 				INFOPLIST_FILE = GEM/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.emreozdil.GEM;
@@ -420,7 +404,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 73Y2UKHRPT;
+				DEVELOPMENT_TEAM = 6FUKB8LKZE;
 				INFOPLIST_FILE = GEM/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.emreozdil.GEM;
