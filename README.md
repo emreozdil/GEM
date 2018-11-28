@@ -6,8 +6,8 @@ Two-factor authentication login application.
 2. Facial authentication verifies whether the database view and the current view are the same via Microsoft Face API
 
 ## Requirements
-- Swift 4
-- Xcode 9.0+
+- Swift 4.2
+- Xcode 10.0+
 - Firebase
 - ProjectOxfordFace (Microsoft Face API)
 

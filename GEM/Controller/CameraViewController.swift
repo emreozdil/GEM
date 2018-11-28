@@ -94,8 +94,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     }
 
     // Capture Photo function
-    func photoOutput(_ captureOutput: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
-
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         if error != nil {
             print(error?.localizedDescription ?? "error")
             let alert = UIAlertController(title: "Error", message: error?.localizedDescription ?? "error", preferredStyle: .alert)
@@ -106,132 +105,92 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
             self.present(alert, animated: true, completion: nil)
             return
         }
-        if let sampleBuffer = photoSampleBuffer, let previewBuffer = photoSampleBuffer, let dataImage = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: sampleBuffer, previewPhotoSampleBuffer: previewBuffer) {
-
-            // Reference to Firabase Storage
-            let userID = Auth.auth().currentUser?.uid
-            let imageRef = usersStorageRef.child("\(userID!).jpg")
-
-
-            showActivityIndicator(onView: self.view)
-            if photoType == PhotoType.register{
-
-                self.personImage = UIImage(data: dataImage)
-
-                let client = MPOFaceServiceClient(subscriptionKey: "Microsoft Face API KEY")!
-
-                let data = UIImageJPEGRepresentation(self.personImage!, 0.8)
-
-                // Detect real-time photo
-                client.detect(with: data!, returnFaceId: true, returnFaceLandmarks: true, returnFaceAttributes: [], completionBlock: { (faces, error) in
-
-                    if error != nil {
-                        print(error!)
-                        Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).removeValue(completionBlock: { (error, refer) in
-                            if error != nil {
-                                print(error?.localizedDescription ?? "error")
-                            } else {
-                                print("User removed correctly from database")
-                            }
-                        })
-                        let user = Auth.auth().currentUser
-                        user?.delete { error in
-                            if let error = error {
-                                print(error)
-                            } else {
-                                print("User successfully deleted from Firebase Auth")
-
-                            }
-                        }
-                        let alert = UIAlertController(title: "Error", message: error?.localizedDescription ?? "error", preferredStyle: .alert)
-                        let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                            self.dismiss(animated: true, completion: nil)
-                        })
-                        alert.addAction(action)
-                        self.present(alert, animated: true, completion: nil)
-                        return
-                    }
-
-                    // Control the number of face
-                    if (faces!.count) > 1 || (faces!.count) == 0 {
-                        print("There is more than one or no face in the picture")
-                        Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).removeValue(completionBlock: { (error, refer) in
-                            if error != nil {
-                                print(error?.localizedDescription ?? "error")
-                            } else {
-                                print("User removed correctly from database")
-                            }
-                        })
-                        let user = Auth.auth().currentUser
-                        user?.delete { error in
-                            if let error = error {
-                                print(error)
-                            } else {
-                                print("User successfully deleted from Firebase Auth")
-
-                            }
-                        }
-                        let alert = UIAlertController(title: "Error", message: "There is more than one or no face in the picture", preferredStyle: .alert)
-                        let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                            self.dismiss(animated: true, completion: nil)
-                        })
-                        alert.addAction(action)
-                        self.present(alert, animated: true, completion: nil)
-                        self.failLogin()
-                        return
-                    }
-
-                    // Upload to Firebase Storage
-                    let uploadTask = imageRef.putData(dataImage, metadata: nil, completion: { (metadata, error) in
+        
+        guard let imageData = photo.fileDataRepresentation() else { return }
+        
+        let userID = Auth.auth().currentUser?.uid
+        let imageRef = usersStorageRef.child("\(userID!).jpg")
+        
+        
+        showActivityIndicator(onView: self.view)
+        if photoType == PhotoType.register{
+            
+            self.personImage = UIImage(data: imageData)
+            
+            let client = MPOFaceServiceClient(subscriptionKey: "Microsoft Face API KEY")!
+            
+            let data = self.personImage!.jpegData(compressionQuality: 0.8)
+            
+            // Detect real-time photo
+            client.detect(with: data!, returnFaceId: true, returnFaceLandmarks: true, returnFaceAttributes: [], completionBlock: { (faces, error) in
+                
+                if error != nil {
+                    print(error!)
+                    Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).removeValue(completionBlock: { (error, refer) in
                         if error != nil {
-                            let user = Auth.auth().currentUser
-                            user?.delete { error in
-                                if let error = error {
-                                    print(error)
-                                } else {
-                                    print("User successfully deleted")
-                                }
-                            }
-                            let alert = UIAlertController(title: "Error", message: error?.localizedDescription ?? "error", preferredStyle: .alert)
-                            let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                                self.dismiss(animated: true, completion: nil)
-                            })
-                            alert.addAction(action)
-                            self.present(alert, animated: true, completion: nil)
-                            return
-                        }
-                        else{
-                            self.actIdc.stopAnimating()
-
-                            print("Picture is saved successfully")
-                            let alert = UIAlertController(title: "Successful", message: "Picture is saved successfully", preferredStyle: .alert)
-                            let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                                self.previewLayer.removeFromSuperlayer()
-                                let viewController = ViewController()
-                                let navigationController = UINavigationController(rootViewController: viewController)
-                                self.present(navigationController, animated: true, completion: nil)
-                            })
-                            alert.addAction(action)
-                            self.present(alert, animated: true, completion: nil)
+                            print(error?.localizedDescription ?? "error")
+                        } else {
+                            print("User removed correctly from database")
                         }
                     })
-
-                    uploadTask.resume()
-
-                })
-                self.captureSession.stopRunning()
-
-            }else if photoType == PhotoType.login {
-
-                self.personImage = UIImage(data: dataImage)
-
-                captureSession.stopRunning()
-
-                // Download from Firebase Storage
-                imageRef.downloadURL(completion: { (url, error) in
-
+                    let user = Auth.auth().currentUser
+                    user?.delete { error in
+                        if let error = error {
+                            print(error)
+                        } else {
+                            print("User successfully deleted from Firebase Auth")
+                            
+                        }
+                    }
+                    let alert = UIAlertController(title: "Error", message: error?.localizedDescription ?? "error", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                        self.dismiss(animated: true, completion: nil)
+                    })
+                    alert.addAction(action)
+                    self.present(alert, animated: true, completion: nil)
+                    return
+                }
+                
+                // Control the number of face
+                if (faces!.count) > 1 || (faces!.count) == 0 {
+                    print("There is more than one or no face in the picture")
+                    Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).removeValue(completionBlock: { (error, refer) in
+                        if error != nil {
+                            print(error?.localizedDescription ?? "error")
+                        } else {
+                            print("User removed correctly from database")
+                        }
+                    })
+                    let user = Auth.auth().currentUser
+                    user?.delete { error in
+                        if let error = error {
+                            print(error)
+                        } else {
+                            print("User successfully deleted from Firebase Auth")
+                            
+                        }
+                    }
+                    let alert = UIAlertController(title: "Error", message: "There is more than one or no face in the picture", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                        self.dismiss(animated: true, completion: nil)
+                    })
+                    alert.addAction(action)
+                    self.present(alert, animated: true, completion: nil)
+                    self.failLogin()
+                    return
+                }
+                
+                // Upload to Firebase Storage
+                let uploadTask = imageRef.putData(imageData, metadata: nil, completion: { (metadata, error) in
                     if error != nil {
-                        print(error!)
+                        let user = Auth.auth().currentUser
+                        user?.delete { error in
+                            if let error = error {
+                                print(error)
+                            } else {
+                                print("User successfully deleted")
+                            }
+                        }
                         let alert = UIAlertController(title: "Error", message: error?.localizedDescription ?? "error", preferredStyle: .alert)
                         let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
                             self.dismiss(animated: true, completion: nil)
@@ -239,10 +198,48 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                         alert.addAction(action)
                         self.present(alert, animated: true, completion: nil)
                         return
+                    } else {
+                        self.actIdc.stopAnimating()
+                        
+                        print("Picture is saved successfully")
+                        let alert = UIAlertController(title: "Successful", message: "Picture is saved successfully", preferredStyle: .alert)
+                        let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                            self.previewLayer.removeFromSuperlayer()
+                            let viewController = ViewController()
+                            let navigationController = UINavigationController(rootViewController: viewController)
+                            self.present(navigationController, animated: true, completion: nil)
+                        })
+                        alert.addAction(action)
+                        self.present(alert, animated: true, completion: nil)
                     }
-                    self.verify(withURL: url!.absoluteString)
                 })
-            }
+                
+                uploadTask.resume()
+                
+            })
+            self.captureSession.stopRunning()
+            
+        } else if photoType == PhotoType.login {
+            
+            self.personImage = UIImage(data: imageData)
+            
+            captureSession.stopRunning()
+            
+            // Download from Firebase Storage
+            imageRef.downloadURL(completion: { (url, error) in
+                
+                if error != nil {
+                    print(error!)
+                    let alert = UIAlertController(title: "Error", message: error?.localizedDescription ?? "error", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                        self.dismiss(animated: true, completion: nil)
+                    })
+                    alert.addAction(action)
+                    self.present(alert, animated: true, completion: nil)
+                    return
+                }
+                self.verify(withURL: url!.absoluteString)
+            })
         }
     }
 
@@ -250,7 +247,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
 
         let client = MPOFaceServiceClient(subscriptionKey: "Microsoft Face API KEY")!
 
-        let data = UIImageJPEGRepresentation(self.personImage!, 0.8)
+        let data = self.personImage!.jpegData(compressionQuality: 0.8)
 
         // Detect real-time photo
         client.detect(with: data, returnFaceId: true, returnFaceLandmarks: true, returnFaceAttributes: [], completionBlock: { (faces, error) in
@@ -314,7 +311,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
                         let navigationController = UINavigationController(rootViewController: viewController)
                         self.present(navigationController, animated: true, completion: nil)
 
-                    }else {
+                    } else {
                         self.failLogin()
                     }
                 })
@@ -338,7 +335,7 @@ class CameraViewController: UIViewController, AVCapturePhotoCaptureDelegate {
         actIdc = UIActivityIndicatorView()
         actIdc.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
         actIdc.hidesWhenStopped = true
-        actIdc.activityIndicatorViewStyle = .whiteLarge
+        actIdc.style = .whiteLarge
         actIdc.center = CGPoint(x: loadingView.frame.size.width / 2, y: loadingView.frame.size.height / 2)
 
         loadingView.addSubview(actIdc)
